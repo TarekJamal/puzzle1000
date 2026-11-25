@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#7c4dff"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="icon.svg"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>١٠٠٠ لغز — تحدّي العقل</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;900&display=swap" rel="stylesheet">
 <style>
@@ -48,6 +48,8 @@ html{height:100%}body{margin:0;min-height:100%;font-family:Cairo,Tahoma,sans-ser
 .tg{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:50%;transform:translateX(-50%);background:#ffd23f;color:#3b2a00;padding:10px 22px;border-radius:30px;font-weight:900;z-index:70;box-shadow:0 8px 20px #0005;animation:pp .5s}
 .bx{max-height:90vh;overflow:auto}#mc{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);left:10px;z-index:30;font-size:46px;animation:fl 3s ease-in-out infinite;pointer-events:none}#mc b{display:none;position:absolute;bottom:100%;left:0;white-space:nowrap;background:#fff;color:#1d1553;font-size:15px;padding:6px 12px;border-radius:14px;box-shadow:0 4px 12px #0004}#mc.sy b{display:block;animation:pp .4s}
 .av svg,#mc svg{width:56px;height:56px;display:block}.owl .ey{transform-box:fill-box;transform-origin:center;animation:bl 4s infinite}@keyframes bl{94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}.wc .ic svg{display:block;margin:0 auto;filter:drop-shadow(0 4px 4px #0005)}
+.wow{animation:wow 1s}@keyframes wow{to{transform:rotate(360deg) scale(1.08);filter:hue-rotate(180deg)}}#tn{background:#ffffff18;border-radius:10px}
+.tg{max-width:90vw;text-align:center}
 </style></head><body>
 <div class="app">
 <section class="scr on" id="s0"><div class="logo">🧠 ١٠٠٠ لغز</div><div class="tag">فكّر... اكتشف... انتصر!</div><button class="b3 big" id="go">▶ ابدأ المغامرة</button></section>
@@ -55,7 +57,7 @@ html{height:100%}body{margin:0;min-height:100%;font-family:Cairo,Tahoma,sans-ser
  <div class="pl"><span class="av">🦉</span><div><b id="pn"></b><div class="xb"><i id="px"></i></div></div><b id="pc"></b></div>
  <div class="seg" id="df"></div>
  <div class="wg" id="wg"></div>
- <div class="row" style="margin-top:18px"><button class="b3" id="bs" style="--c:#06b6d4;width:auto;height:auto;padding:10px 16px;font-size:16px"></button></div>
+ <div class="row" style="margin-top:18px"><button class="b3" id="bm" style="--c:#8b5cf6;width:auto;height:auto;padding:10px 16px;font-size:16px"></button><button class="b3" id="bs" style="--c:#06b6d4;width:auto;height:auto;padding:10px 16px;font-size:16px"></button></div>
 </section>
 <section class="scr" id="s2">
  <div class="top"><button class="b3" id="bk" style="--c:#6b7280">→</button><div class="tb" id="tb"><i></i></div><b id="tl" style="min-width:38px;color:#fff"></b></div>
@@ -67,7 +69,7 @@ html{height:100%}body{margin:0;min-height:100%;font-family:Cairo,Tahoma,sans-ser
 const $=s=>document.querySelector(s),AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
 const WD=[{id:'math',n:167,t:'مملكة الأرقام',i:'🔢',c:'#ff5fa2',d:'ذكاء رياضي'},{id:'logic',n:167,t:'غابة المنطق',i:'🧩',c:'#18b86a',d:'اكتشف النمط'},{id:'eye',n:167,t:'جزيرة الملاحظة',i:'🔍',c:'#ff9f1c',d:'اكتشف المختلف'},{id:'mem',n:167,t:'قلعة الذاكرة',i:'🃏',c:'#8b5cf6',d:'تذكّر الصور'},{id:'lang',n:166,t:'مدينة الحروف',i:'🔤',c:'#0ea5e9',d:'ذكاء لغوي'},{id:'life',n:166,t:'سوق الحياة',i:'💰',c:'#ef4565',d:'نقود وتسوق'}];
 let S={lv:{},xp:0,coins:0,df:1,mu:1,fx:1};try{Object.assign(S,JSON.parse(localStorage.getItem('p1000v2')||'{}'))}catch(e){}
-WD.push({id:'cube',n:142,t:'معمل المكعبات',i:'🧊',c:'#f59e0b',d:'روبيك وألغاز الحركة'});WD.push({id:'know',t:'جامعة المعرفة',i:'🌍',c:'#14b8a6',d:'ثقافة عامة'});WD.forEach(w=>w.n=125);S.own=S.own||[0,6];S.sk=S.sk||'🦉';WD.forEach(w=>S.lv[w.id]=S.lv[w.id]||1);const save=()=>{try{localStorage.setItem('p1000v2',JSON.stringify(S))}catch(e){}};
+WD.push({id:'cube',n:142,t:'معمل المكعبات',i:'🧊',c:'#f59e0b',d:'روبيك وألغاز الحركة'});WD.push({id:'know',t:'جامعة المعرفة',i:'🌍',c:'#14b8a6',d:'ثقافة عامة'});WD.forEach(w=>w.n=125);WD.push({id:'mand',n:100,t:'مرآة الأحلام',i:'🪞',c:'#d946ef',d:'ماندالا متناظرة تبهر العين'},{id:'tet',n:1,t:'بلورات تتريس',i:'💎',c:'#06b6d4',d:'بلوكات كريستالية'});S.own=S.own||[0,6];S.sk=S.sk||'🦉';WD.forEach(w=>S.lv[w.id]=S.lv[w.id]||1);const save=()=>{try{localStorage.setItem('p1000v2',JSON.stringify(S))}catch(e){}};
 const rng=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296},ri=(r,a,b)=>a+Math.floor(r()*(b-a+1)),pk=(r,a)=>a[Math.floor(r()*a.length)],sf=(r,a)=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 /* audio */
 let AC;const tone=(f,d=.15,t='sine',v=.15,w=0,m=0)=>{if(m?!S.mu:!S.fx)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain(),n=AC.currentTime+w;o.type=t;o.frequency.value=f;g.gain.setValueAtTime(v,n);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g);g.connect(AC.destination);o.start(n);o.stop(n+d)}catch(e){}};
@@ -76,37 +78,50 @@ let mt,st=0;const P=[0,2,4,7,9],RT=[0,9,5,7];const music=()=>{if(mt)return;mt=se
 /* fx */
 for(let i=0;i<12;i++){const b=document.createElement('div'),z=20+Math.random()*60;b.className='bub';b.style.cssText=`left:${Math.random()*100}%;width:${z}px;height:${z}px;animation-duration:${9+Math.random()*10}s;animation-delay:-${Math.random()*15}s`;document.body.appendChild(b)}
 function burst(x,y,n=16){for(let i=0;i<n;i++){const e=document.createElement('i'),a=Math.random()*6.28,r=70+Math.random()*130;e.className='bp';e.textContent='⭐✨💎🎉💜'[i%5*(i%5>1?1:1)]||'⭐';e.textContent=['⭐','✨','💎','🎉','💜'][i%5];e.style.cssText=`left:${x}px;top:${y}px;--dx:${Math.cos(a)*r}px;--dy:${Math.sin(a)*r}px`;document.body.appendChild(e);setTimeout(()=>e.remove(),950)}}
-const toast=t=>{const e=document.createElement('div');e.className='tg';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2200)};
-const show=id=>{document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id==id))};
+const toast=t=>{document.querySelectorAll('.tg').forEach(x=>x.remove());const e=document.createElement('div');e.className='tg';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),2200)};
+const show=id=>{try{mu()}catch(e){}document.querySelectorAll('.scr').forEach(s=>s.classList.toggle('on',s.id==id))};
 const lvl=()=>1+Math.floor(Math.sqrt(S.xp/40));
 /* home */
 const DF=['سهل 🟢','متوسط 🟡','صعب 🔴'];
-function home(){
-  clearInterval(G.tm);
-  show('s1');
-  const l=lvl(),a=40*(l-1)**2,b=40*l*l;
-  $('#pn').textContent='المستوى '+AR(l)+' — '+AR(S.xp)+' XP';
-  $('#px').style.width=(S.xp-a)/(b-a)*100+'%';
-  $('#pc').textContent='🪙 '+AR(S.coins);
-  $('.av').innerHTML=MS();
-
-  $('#df').innerHTML=DF.map((t,i)=>`<button class="b3 ${S.df==i?'s':''}" data-i="${i}" style="--c:${['#18b86a','#f59e0b','#ef4565'][i]}">${t}</button>`).join('');
-  document.querySelectorAll('#df .b3').forEach(b=>b.onclick=()=>{S.df=+b.dataset.i;save();fx.tap();home()});
-
-  $('#wg').innerHTML=WD.map(w=>`<button class="wc" data-id="${w.id}" style="--c:${w.c}"><div class="ic">${badge(w.c,w.i)}</div><b>${w.t}</b><small>${w.d}</small><div class="xb"><i style="width:${Math.min(1,(S.lv[w.id]-1)/w.n)*100}%"></i></div><small>${AR(Math.min(w.n,S.lv[w.id]-1))}/${AR(w.n)}</small></button>`).join('');
-  document.querySelectorAll('.wc').forEach(c=>c.onclick=()=>{fx.tap();open(WD.find(w=>w.id==c.dataset.id))});
-
-  // 🔇 تم حذف زر الموسيقى #bm بالكامل
-  $('#bs').textContent=S.fx?'🔊 المؤثرات':'🔇 المؤثرات';
-}
-
-$('#bs').onclick=()=>{S.fx^=1;save();home();fx.tap()};
-$('#go').onclick=()=>{fx.win();home()};   // 🎵 تم حذف music();
-$('#bk').onclick=home;
-
+function home(){clearInterval(G.tm);show('s1');const l=lvl(),a=40*(l-1)**2,b=40*l*l;$('#pn').textContent='المستوى '+AR(l)+' — '+AR(S.xp)+' XP';$('#px').style.width=(S.xp-a)/(b-a)*100+'%';$('#pc').textContent='🪙 '+AR(S.coins);$('.av').innerHTML=MS();
+ $('#df').innerHTML=DF.map((t,i)=>`<button class="b3 ${S.df==i?'s':''}" data-i="${i}" style="--c:${['#18b86a','#f59e0b','#ef4565'][i]}">${t}</button>`).join('');
+ document.querySelectorAll('#df .b3').forEach(b=>b.onclick=()=>{S.df=+b.dataset.i;save();fx.tap();home()});
+ $('#wg').innerHTML=WD.map(w=>`<button class="wc" data-id="${w.id}" style="--c:${w.c}"><div class="ic">${badge(w.c,w.i)}</div><b>${w.t}</b><small>${w.d}</small><div class="xb"><i style="width:${Math.min(1,(S.lv[w.id]-1)/w.n)*100}%"></i></div><small>${w.id=='tet'?'🏆 '+AR(S.hi||0):AR(Math.min(w.n,S.lv[w.id]-1))+'/'+AR(w.n)}</small></button>`).join('');
+ document.querySelectorAll('.wc').forEach(c=>c.onclick=()=>{fx.tap();open(WD.find(w=>w.id==c.dataset.id))});
+ $('#bm').textContent=S.mu?'🎵 الموسيقى':'🔇 الموسيقى';$('#bs').textContent=S.fx?'🔊 المؤثرات':'🔇 المؤثرات'}
+$('#bm').onclick=()=>{S.mu^=1;save();home()};$('#bs').onclick=()=>{S.fx^=1;save();home();fx.tap()};
+$('#go').onclick=()=>{fx.win();music();home()};$('#bk').onclick=home;
 /* engine */
 const G={};
-function open(w){G.w=w;render()}
+const mu=()=>document.querySelectorAll('.mu').forEach(b=>b.textContent=S.mu?'🎵':'🔇'),mm=()=>{S.mu^=1;save();mu();$('#bm').textContent=S.mu?'🎵 الموسيقى':'🔇 الموسيقى'};
+const mb=document.createElement('button');mb.className='b3 mu';mb.style.cssText='--c:#8b5cf6;padding:8px 12px;font-size:16px';mb.onclick=mm;$('#bk').after(mb);mu();
+const TS=[[[1,1,1,1]],[[1,1],[1,1]],[[0,1,0],[1,1,1]],[[0,1,1],[1,1,0]],[[1,1,0],[0,1,1]],[[1,0,0],[1,1,1]],[[0,0,1],[1,1,1]]],TC=['#38e8ff','#ffd23f','#c77dff','#4ade80','#ff5d73','#4d7cff','#ff9f43'],TT={on:0};
+const blk=(g,c,x,y,s,a)=>{g.globalAlpha=a;const gr=g.createLinearGradient(x,y,x+s,y+s);gr.addColorStop(0,'#fff');gr.addColorStop(.28,c);gr.addColorStop(1,'#000b');g.fillStyle=gr;g.beginPath();g.roundRect(x+1,y+1,s-2,s-2,s/5);g.fill();g.fillStyle='#fff7';g.beginPath();g.moveTo(x+s*.15,y+s*.15);g.lineTo(x+s*.8,y+s*.15);g.lineTo(x+s*.6,y+s*.35);g.lineTo(x+s*.35,y+s*.35);g.fill();g.globalAlpha=1};
+function open(w){if(w.id=='tet')return tet();G.w=w;render()}
+function tet(){
+ if(!$('#s3')){$('.app').insertAdjacentHTML('beforeend',`<section class='scr' id='s3'><div class='top'><button class='b3' id='tbk' style='--c:#6b7280'>→</button><button class='b3 mu' style='--c:#8b5cf6;padding:8px 12px'></button><b id='tsc' style='color:#fff;flex:1;text-align:center;text-shadow:0 2px 6px #0006'></b><canvas id='tn' width='72' height='48'></canvas><button class='b3' id='tps' style='--c:#f59e0b;padding:8px 12px'>⏸</button></div><div class='st' style='padding:10px;min-height:0'><canvas id='tc' width='300' height='600' style='width:min(80vw,280px);height:auto;border-radius:16px;display:block;margin:auto;background:#120a33;box-shadow:0 0 30px #7c4dff88'></canvas><div class='row' id='tk' style='direction:ltr'></div></div></section>`);$('#s3 .mu').onclick=mm}
+ TT.on=1;const id=TT.id=(TT.id||0)+1,cv=$('#tc'),g=cv.getContext('2d'),nc=$('#tn').getContext('2d'),W=10,H=20,Z=30;
+ let B=Array.from({length:H},()=>Array(W).fill(0)),sc=0,ln=0,lv=1,pz=0,over=0,acc=0,lt=0,cur,nx;
+ const rp=()=>{const i=Math.floor(Math.random()*7);return{m:TS[i],c:i+1,x:0,y:0}},
+ ok=(m,x,y)=>m.every((R,j)=>R.every((v,i)=>!v||(x+i>=0&&x+i<W&&y+j<H&&(y+j<0||!B[y+j][x+i])))),
+ rot=m=>m[0].map((_,i)=>m.map(R=>R[i]).reverse()),
+ sp=()=>{cur=nx||rp();nx=rp();cur.x=Math.floor((W-cur.m[0].length)/2);cur.y=0;if(!ok(cur.m,cur.x,0))fin()},
+ mv=(dx,dy)=>{if(over||pz||!ok(cur.m,cur.x+dx,cur.y+dy))return 0;cur.x+=dx;cur.y+=dy;if(dx)tone(300,.04,'square',.04);return 1},
+ ro=()=>{if(over||pz)return;const m=rot(cur.m);for(const k of[0,-1,1,-2,2])if(ok(m,cur.x+k,cur.y)){cur.m=m;cur.x+=k;tone(520,.05,'square',.05);return}},
+ lk=()=>{cur.m.forEach((R,j)=>R.forEach((v,i)=>{if(v&&cur.y+j>=0)B[cur.y+j][cur.x+i]=cur.c}));tone(150,.08,'triangle',.12);let n=0;const rc=cv.getBoundingClientRect();
+  for(let y=H-1;y>=0;y--)if(B[y].every(v=>v)){burst(rc.left+rc.width/2,rc.top+rc.height*(y+.5)/H,10);B.splice(y,1);B.unshift(Array(W).fill(0));y++;n++}
+  if(n){sc+=[0,100,300,500,800][n]*lv;ln+=n;lv=1+Math.floor(ln/10);if(n>2){fx.win();say(n>3?'تتريس! 🔥':'ممتاز!')}else fx.ok()}sp()},
+ hd=()=>{if(over||pz)return;while(mv(0,1))sc+=2;lk()},
+ fin=()=>{over=1;TT.on=0;S.hi=Math.max(S.hi||0,sc);const cn=Math.floor(sc/150);S.coins+=cn;S.xp+=Math.floor(sc/50);save();fx.bad();$('#ov').classList.add('on');$('#bx').innerHTML=`<div style='font-size:60px'>💎</div><h2>انتهت اللعبة</h2><div>النقاط: ${AR(sc)} — الأفضل: ${AR(S.hi)}</div><div>+${AR(cn)} 🪙</div><br><button class='b3' id='ra' style='--c:#18b86a'>↺ العب مجددًا</button> <button class='b3' id='rh' style='--c:#6b7280'>الخريطة</button>`;$('#ra').onclick=()=>{$('#ov').classList.remove('on');tet()};$('#rh').onclick=()=>{$('#ov').classList.remove('on');home()}},
+ dr=()=>{g.clearRect(0,0,300,600);g.strokeStyle='#ffffff10';for(let i=1;i<W;i++){g.beginPath();g.moveTo(i*Z,0);g.lineTo(i*Z,600);g.stroke()}for(let j=1;j<H;j++){g.beginPath();g.moveTo(0,j*Z);g.lineTo(300,j*Z);g.stroke()}
+  B.forEach((R,y)=>R.forEach((c,x)=>c&&blk(g,TC[c-1],x*Z,y*Z,Z,1)));let gy=cur.y;while(ok(cur.m,cur.x,gy+1))gy++;
+  cur.m.forEach((R,j)=>R.forEach((v,i)=>{if(v){blk(g,TC[cur.c-1],(cur.x+i)*Z,(gy+j)*Z,Z,.22);blk(g,TC[cur.c-1],(cur.x+i)*Z,(cur.y+j)*Z,Z,1)}}));
+  nc.clearRect(0,0,72,48);nx.m.forEach((R,j)=>R.forEach((v,i)=>v&&blk(nc,TC[nx.c-1],4+i*16,2+j*16,16,1)));$('#tsc').textContent='⭐ '+AR(sc)+' · م'+AR(lv)},
+ loop=t=>{if(!TT.on||TT.id!=id)return;if(!pz&&!over){acc+=t-lt;if(acc>Math.max(90,720-lv*60)){acc=0;if(!mv(0,1))lk()}}lt=t;if(cur)dr();requestAnimationFrame(loop)};
+ $('#tk').innerHTML='';[['◀',()=>mv(-1,0)],['⟳',ro],['▶',()=>mv(1,0)],['▼',()=>{mv(0,1)&&sc++}],['⤓',hd]].forEach(([t,f])=>{const b=document.createElement('button');b.className='b3';b.style.cssText='--c:#8b5cf6';b.textContent=t;b.onclick=f;$('#tk').appendChild(b)});
+ $('#tbk').onclick=()=>{TT.on=0;$('#ov').classList.remove('on');home()};$('#tps').onclick=()=>{pz^=1;$('#tps').textContent=pz?'▶':'⏸'};
+ document.onkeydown=e=>{if(!TT.on)return;const f={ArrowLeft:()=>mv(-1,0),ArrowRight:()=>mv(1,0),ArrowUp:ro,ArrowDown:()=>mv(0,1),' ':hd}[e.key];if(f){f();e.preventDefault()}};
+ show('s3');mu();fx.tap();sp();lt=performance.now();requestAnimationFrame(loop)}
 function render(){clearInterval(G.tm);const w=G.w,L=S.lv[w.id];show('s2');$('#ov').classList.remove('on');
  if(L>w.n){$('#st').innerHTML='<div class="q">🏆 أتممت عالم '+w.t+'!</div>';$('#tl').textContent='';return}
  G.L=L;G.h=3;G.lock=0;const p=L/w.n,d=Math.max(1,Math.min(12,Math.ceil(p*10)+[-2,0,2][S.df]));
@@ -124,7 +139,7 @@ function end(win,msg){clearInterval(G.tm);G.lock=1;const o=$('#ov'),bx=$('#bx'),
  bx.innerHTML=`<div class="stars">${[1,2,3].map(i=>`<span style="animation-delay:${i*.2}s">${star(i<=s)}</span>`).join('')}</div><h2>أحسنت يا بطل! 🎉</h2><div>+${AR(xp)} XP &nbsp; +${AR(cn)} 🪙</div><div class="fa">💡 ${FACTS[(G.L*5+w.n)%FACTS.length]}</div>${ch?'<div class="chest" id="chs">🎁</div><div>اضغط لفتح صندوق الكنز!</div>':''}<button class="b3" id="nx" style="--c:#18b86a">المرحلة التالية ◀</button>`;
  if(lvl()>l0)setTimeout(()=>toast('🎊 ارتقيت للمستوى '+AR(lvl())+'!'),600);
  if(ch)$('#chs').onclick=function(){this.textContent='💎';this.onclick=null;S.coins+=25;S.xp+=20;save();fx.win();const b=this.getBoundingClientRect();burst(b.x+40,b.y+40,24);toast('🪙 +٢٥ و +٢٠ XP')};
- $('#nx').onclick=render}
+ o.classList.remove('on');toast('⭐'.repeat(s)+'  +'+AR(xp)+' XP');if(ch){S.coins+=25;S.xp+=20;save();setTimeout(()=>toast('🎁 صندوق كنز +٢٥ 🪙 — 💡 '+FACTS[(G.L*5+w.n)%FACTS.length]),1300)}setTimeout(render,ch?2600:900)}
 const FACTS=["القلب يضخ نحو ٧٠٠٠ لتر من الدم يوميًا.","الخوارزمي هو أبو علم الجبر، ومنه جاءت كلمة خوارزمية.","منارة الإسكندرية كانت من عجائب الدنيا السبع.","الدماغ يستهلك نحو ٢٠٪ من طاقة الجسم.","النوم الجيد يثبّت ما تعلمته في الذاكرة.","ابن الهيثم وضع أسس علم البصريات.","الادخار المنتظم يصنع الثروة ولو بمبلغ صغير.","الألغاز تقوّي الذاكرة العاملة وسرعة التفكير.","النحل يتواصل مع بعضه برقصات خاصة.","مكعب روبيك اخترعه المهندس المجري إرنو روبيك عام ١٩٧٤.","الأهرامات بُنيت قبل أكثر من أربعة آلاف عام.","شرب الماء يساعد الدماغ على التركيز.","التدريب اليومي القصير أفضل من ساعات متقطعة.","الضحك يخفف التوتر ويحسّن المزاج.","الصفر من أعظم اختراعات الرياضيات.","الاستراحة القصيرة تزيد التركيز وتُحسّن التعلم."];
 const OWL=`<svg viewBox='0 0 100 100' class='owl'><defs><radialGradient id='ob' cx='.4' cy='.3' r='.9'><stop offset='0' stop-color='#c98a4b'/><stop offset='1' stop-color='#6b3f1e'/></radialGradient></defs><path d='M20 22l12 10M80 22L68 32' stroke='#6b3f1e' stroke-width='9' stroke-linecap='round'/><ellipse cx='50' cy='58' rx='36' ry='38' fill='url(#ob)' stroke='#4a2a12' stroke-width='3'/><ellipse cx='50' cy='72' rx='22' ry='20' fill='#f6dfb8'/><g class='ey'><circle cx='35' cy='44' r='13' fill='#fff' stroke='#4a2a12' stroke-width='3'/><circle cx='65' cy='44' r='13' fill='#fff' stroke='#4a2a12' stroke-width='3'/><circle cx='37' cy='45' r='6' fill='#222'/><circle cx='63' cy='45' r='6' fill='#222'/><circle cx='39' cy='43' r='2' fill='#fff'/><circle cx='65' cy='43' r='2' fill='#fff'/></g><path d='M44 54l6 10 6-10z' fill='#ffb13d' stroke='#c77700' stroke-width='2' stroke-linejoin='round'/><path d='M14 62q-6 16 8 26M86 62q6 16-8 26' stroke='#4a2a12' stroke-width='5' fill='none' stroke-linecap='round'/></svg>`;
 const MS=()=>S.sk=='🦉'?OWL:S.sk;
@@ -136,7 +151,11 @@ const ab=()=>{const s=document.documentElement.style;if(S.bg){s.setProperty('--b
 function shop(){const o=$('#ov'),bx=$('#bx');o.classList.add('on');bx.innerHTML=`<h2>🛍️ المتجر — 🪙 ${AR(S.coins)}</h2><div class="opts">${SH.map((x,i)=>`<button class="b3" data-i="${i}" style="--c:${S.own.includes(i)?'#18b86a':'#f59e0b'}">${x.t}<br><small>${S.own.includes(i)?'متاح ✓':AR(x.p)+' 🪙'}</small></button>`).join('')}</div><br><button class="b3" id="cl" style="--c:#6b7280">إغلاق</button>`;
  bx.querySelectorAll('.opts .b3').forEach(b=>b.onclick=()=>{const i=+b.dataset.i,x=SH[i];if(!S.own.includes(i)){if(S.coins<x.p)return toast('عملاتك لا تكفي 🪙');S.coins-=x.p;S.own.push(i);fx.win()}else fx.tap();if(x.k=='sk')S.sk=x.t;else S.bg=x.v;save();$('#mc').innerHTML=MS();ab();shop()});
  $('#cl').onclick=()=>{o.classList.remove('on');home()}}
-const bh=document.createElement('button');bh.className='b3';bh.style.cssText='--c:#f59e0b;width:auto;height:auto;padding:10px 16px;font-size:16px';bh.textContent='🛍️ المتجر';bh.onclick=shop;$('#bs').after(bh);$('#mc').innerHTML=MS();ab();
+const bh=document.createElement('button');bh.className='b3';bh.style.cssText='--c:#f59e0b;width:auto;height:auto;padding:10px 16px;font-size:16px';bh.textContent='🛍️ المتجر';bh.onclick=shop;$('#bs').after(bh);
+let DP;const ib=document.createElement('button');ib.className='b3';ib.style.cssText='--c:#18b86a;width:auto;height:auto;padding:10px 16px;font-size:16px';ib.textContent='📲 تثبيت التطبيق';$('#bs').after(ib);if(matchMedia('(display-mode: standalone)').matches||navigator.standalone)ib.style.display='none';
+ib.onclick=async()=>{if(DP){DP.prompt();await DP.userChoice;DP=null}else if(/iphone|ipad|ipod/i.test(navigator.userAgent))toast('اضغط زر المشاركة ⬆️ ثم إضافة إلى الشاشة الرئيسية');else toast('التثبيت يعمل من الموقع المستضاف عبر Chrome أو Edge أو Safari')};
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e});addEventListener('appinstalled',()=>{ib.style.display='none';toast('✅ تم التثبيت')});
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));$('#mc').innerHTML=MS();ab();
 /* puzzles */
 const near=(r,a,n=4,s=5)=>{const z=new Set([a]);let g=0;while(z.size<n&&g++<99){const v=a+ri(r,-s,s);if(v>=0)z.add(v)}return sf(r,[...z])};
 let KB,EXT=[];const QX=`في أي قارة تقع مصر؟|أفريقيا|آسيا|أوروبا|أمريكا
@@ -214,6 +233,12 @@ let KB,EXT=[];const QX=`في أي قارة تقع مصر؟|أفريقيا|آسي
 أي كوكب له حلقات مشهورة؟|زحل|المريخ|الأرض|عطارد
 مصدر الضوء الرئيسي للأرض؟|الشمس|القمر|النجوم|المصابيح`;
 const PL={
+mand(d,r,A){const n=Math.min(5,3+(d>3)+(d>7)),m=2*n,k=2+(d>4)+(d>8),CL=['#0b0630','#ff4fa3','#4dd0ff','#ffd23f','#7cff6b'],T=Array.from({length:n},()=>Array.from({length:n},()=>ri(r,0,k))),U=Array.from({length:n},()=>Array(n).fill(0)),q=v=>v<n?v:m-1-v,z=Math.min(46,Math.floor(290/m));T[0][0]=T[0][0]||1;
+ const mk=(s,f)=>{const g=document.createElement('div');g.className='gr';g.style.cssText=`grid-template-columns:repeat(${m},${s}px);gap:2px;padding:6px;border-radius:18px;background:#0b0630;box-shadow:0 0 24px #7c4dff88;width:fit-content`;for(let j=0;j<m;j++)for(let i=0;i<m;i++){const c=document.createElement('div');c.style.cssText=`width:${s}px;height:${s}px;border-radius:50%;transition:.25s;cursor:pointer`;c.dataset.i=i;c.dataset.j=j;if(f)c.onclick=()=>f(q(i),q(j));g.appendChild(c)}return g},
+ paint=(g,M)=>[...g.children].forEach(c=>{const v=M[q(+c.dataset.j)][q(+c.dataset.i)];c.style.background=v?`radial-gradient(circle at 35% 30%,#fff,${CL[v]} 45%,#0006)`:'#ffffff14';c.style.boxShadow=v?`0 0 10px ${CL[v]}`:'none'});
+ A.st.innerHTML=`<div class='hint'>🪞 كرّر الشكل الهدف: كل لمسة تنعكس في الزوايا الأربع</div>`;
+ const tg=mk(Math.max(10,Math.floor(z/2.2))),bd=mk(z,(a,b)=>{U[b][a]=(U[b][a]+1)%(k+1);tone([300,440,523,659,784][U[b][a]],.25,'sine',.16);paint(bd,U);if(U.every((R,y)=>R.every((v,x)=>v==T[y][x]))){bd.classList.add('wow');A.hit(1,bd)}});
+ tg.style.margin='4px auto';bd.style.margin='12px auto';A.st.append(tg,bd);paint(tg,T);paint(bd,U);A.extra(40)},
 know(d,r,A){if(!KB){const C=CAP.split(',').map(x=>x.split(':')),O=OPP.split(',').map(x=>x.split(':')),K=[];C.forEach(([c,p])=>{K.push(['ما عاصمة '+c+'؟','🌍 جغرافيا',p,C.map(x=>x[1])]);K.push([p+' هي عاصمة أي دولة؟','🌍 جغرافيا',c,C.map(x=>x[0])])});O.forEach(([a,b])=>K.push(['ما ضد كلمة «'+a+'»؟','🔤 لغة',b,O.map(x=>x[1])]));PLN.forEach((p,i)=>K.push(['ما ترتيب كوكب '+p+' من الشمس؟','🪐 فلك',AR(i+1),'١,٢,٣,٤,٥,٦,٧,٨'.split(',')]));SC.split('\n').forEach(s=>{const[q,...o]=s.split('|');K.push([q,'🔬 علوم',o[0],o])});QX.split('\n').concat(EXT).forEach(s=>{const[q,...o]=s.split('|');if(o.length>3)K.push([q,'🧠 ثقافة',o[0],o])});KB=sf(rng(7),K)}
  const[q,h,a,pool]=KB[(G.L-1)%KB.length],op=new Set([a]);for(const x of sf(r,pool)){if(op.size>=4)break;op.add(x)}A.ch(q,h,a,sf(r,[...op]))},
 cube(d,r,A){const t=ri(r,0,2),n=t==2?Math.min(5,3+(d>5)+(d>9)):d>8?4:3,st=A.st,U=(x,c,f)=>{const e=document.createElement('div');e.style.cssText=c;e.textContent=x||'';if(f)e.onclick=f;return e},
