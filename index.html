@@ -493,111 +493,137 @@ conn(d,r,A){
 },
 /* ===== 🧠 ماستر مايند ===== */
 mast(d,r,A){
- const COLORS = ['#ef4565','#3b82f6','#18b86a','#ffd23f','#a855f7','#ff9f1c'];
- const nColors = d<3 ? 4 : d<6 ? 5 : 6;
- const slots = d<3 ? 3 : 4;
- const maxTries = d<3 ? 8 : d<6 ? 9 : 10;
- const palColors = COLORS.slice(0,nColors);
- const secret = Array.from({length:slots},()=>ri(r,0,nColors-1));
- A.st.innerHTML = `<div class="hint">🧠 خمّن الشيفرة السرية — ${AR(slots)} ألوان من ${AR(nColors)}. 🟢 صحيح في المكان، 🟡 صحيح في مكان آخر</div>
-   <div class="mm" id="mm"></div>
-   <div class="mm" id="pal"></div>
-   <button class="b3" id="mmSubmit" style="--c:#a855f7;margin-top:6px">تخمين ✓</button>`;
- const mm = $('#mm'), pal = $('#pal');
- let tries = [];
- let current = Array(slots).fill(-1);
- let over = false;
- const buildPalette = ()=>{
-   pal.innerHTML='';
-   palColors.forEach((c,i)=>{
-     const b=document.createElement('button');
-     b.style.background=`radial-gradient(circle at 35% 30%, #fff8, ${c} 60%, #0008)`;
-     b.onclick=()=>{
-       if(over||G.lock) return;
-       const idx = current.indexOf(-1);
-       if(idx<0) return;
-       current[idx]=i;
-       tone(400+i*60,.06,'square',.06);
-       renderCurrent();
-     };
-     pal.appendChild(b);
-   });
- };
- const renderCurrent = ()=>{
-   mm.innerHTML='';
-   tries.forEach(t=>{
-     const row=document.createElement('div');
-     row.className='rowx';
-     t.guess.forEach(ci=>{
-       const p=document.createElement('div'); p.className='peg';
-       p.style.background=`radial-gradient(circle at 35% 30%, #fff8, ${palColors[ci]} 60%, #0008)`;
-       row.appendChild(p);
-     });
-     const fb=document.createElement('div'); fb.className='fb';
-     t.fb.forEach(k=>{
-       const d=document.createElement('div'); d.className='dot '+k;
-       fb.appendChild(d);
-     });
-     row.appendChild(fb);
-     mm.appendChild(row);
-   });
-   if(!over && tries.length < maxTries){
-     const row=document.createElement('div'); row.className='rowx';
-     current.forEach((ci,i)=>{
-       const p=document.createElement('div'); p.className='peg';
-       if(ci>=0) p.style.background=`radial-gradient(circle at 35% 30%, #fff8, ${palColors[ci]} 60%, #0008)`;
-       else p.style.background='#ffffff18';
-       p.style.cursor='pointer';
-       p.onclick=()=>{ if(ci>=0){ current[i]=-1; renderCurrent(); } };
-       row.appendChild(p);
-     });
-     mm.appendChild(row);
-   }
-   $('#mmSubmit').disabled = over || current.includes(-1);
- };
- const evaluate = (guess)=>{
-   const used = Array(slots).fill(false), usedS = Array(slots).fill(false);
-   let b=0,w=0;
-   for(let i=0;i<slots;i++){
-     if(guess[i]===secret[i]){ b++; used[i]=true; usedS[i]=true; }
-   }
-   for(let i=0;i<slots;i++){
-     if(used[i]) continue;
-     for(let j=0;j<slots;j++){
-       if(usedS[j]) continue;
-       if(guess[i]===secret[j]){ w++; usedS[j]=true; break; }
-     }
-   }
-   const arr=[];
-   for(let k=0;k<b;k++) arr.push('b');
-   for(let k=0;k<w;k++) arr.push('w');
-   return arr;
- };
- $('#mmSubmit').onclick=()=>{
-   if(over||G.lock||current.includes(-1)) return;
-   const fb = evaluate(current);
-   tries.push({guess:[...current], fb});
-   tone(520,.08,'square',.06);
-   if(fb.filter(x=>x==='b').length === slots){
-     over=true;
-     renderCurrent();
-     fx.win();
-     setTimeout(()=>A.hit(1, mm), 300);
-     return;
-   }
-   if(tries.length >= maxTries){
-     over=true;
-     renderCurrent();
-     fx.bad();
-     setTimeout(()=>A.hit(0, mm), 300);
-     return;
-   }
-   current = Array(slots).fill(-1);
-   renderCurrent();
- };
- A.extra(slots*3);
- buildPalette();
- renderCurrent();
+  const COLORS = ['#ef4565','#3b82f6','#18b86a','#ffd23f','#a855f7','#ff9f1c'];
+  const nColors = d<3 ? 4 : d<6 ? 5 : 6;
+  const slots = d<3 ? 3 : 4;
+  const maxTries = d<3 ? 8 : d<6 ? 9 : 10;
+  const palColors = COLORS.slice(0,nColors);
+  const secret = Array.from({length:slots},()=>ri(r,0,nColors-1));
+
+  A.st.innerHTML = `
+    <div class="hint">🧠 خمّن الشيفرة السرية — ${AR(slots)} ألوان من ${AR(nColors)}. 🟢 صحيح في المكان، 🟡 صحيح في مكان آخر</div>
+    <div id="mmx-history" style="display:flex;flex-direction:column;gap:8px;align-items:center;margin:14px 0"></div>
+    <div id="mmx-palette" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:12px 0"></div>
+    <button id="mmx-submit" class="b3" style="--c:#a855f7;margin-top:6px">تخمين ✓</button>
+    <div id="mmx-msg" style="margin-top:10px;font-size:14px;color:#ffd23f;font-weight:900"></div>
+  `;
+  const histEl = $('#mmx-history');
+  const palEl = $('#mmx-palette');
+  const msgEl = $('#mmx-msg');
+  const subBtn = $('#mmx-submit');
+
+  let tries = [];
+  let current = Array(slots).fill(-1);
+  let over = false;
+
+  const renderPeg = (ci, size=36)=>{
+    const p = document.createElement('div');
+    p.style.cssText = `width:${size}px;height:${size}px;border-radius:50%;flex:0 0 auto;transition:.15s;box-shadow:inset 0 2px 6px #fff6,inset 0 -3px 6px #0008`;
+    if(ci>=0){
+      p.style.background = `radial-gradient(circle at 35% 30%, #fff, ${palColors[ci]} 55%, #0006)`;
+    }else{
+      p.style.background = '#ffffff1a';
+      p.style.border = '2px dashed #ffffff40';
+    }
+    return p;
+  };
+
+  const renderCurrent = ()=>{
+    histEl.innerHTML = '';
+    // الأسطر السابقة
+    tries.forEach(t=>{
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;gap:6px;align-items:center;background:#0b0630;padding:8px 14px;border-radius:14px;box-shadow:0 0 12px #a855f766';
+      t.guess.forEach(ci=> row.appendChild(renderPeg(ci, 32)));
+      const fb = document.createElement('div');
+      fb.style.cssText = 'display:flex;gap:4px;margin-inline-start:10px;flex-wrap:wrap;width:30px';
+      t.fb.forEach(k=>{
+        const dot = document.createElement('div');
+        dot.style.cssText = `width:11px;height:11px;border-radius:50%;background:${k==='b'?'#18b86a':'#ffd23f'};box-shadow:0 0 6px ${k==='b'?'#18b86a':'#ffd23f'}`;
+        fb.appendChild(dot);
+      });
+      row.appendChild(fb);
+      histEl.appendChild(row);
+    });
+    // السطر الحالي
+    if(!over && tries.length < maxTries){
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;gap:6px;align-items:center;background:#1e1b4b;padding:8px 14px;border-radius:14px;border:2px dashed #a855f7';
+      current.forEach((ci,i)=>{
+        const p = renderPeg(ci, 36);
+        p.style.cursor = 'pointer';
+        p.onclick = ()=>{ if(ci>=0){ current[i]=-1; renderCurrent(); } };
+        row.appendChild(p);
+      });
+      const fb = document.createElement('div');
+      fb.style.cssText = 'display:flex;gap:4px;margin-inline-start:10px;width:30px';
+      row.appendChild(fb);
+      histEl.appendChild(row);
+    }
+    subBtn.disabled = over || current.includes(-1);
+  };
+
+  palEl.innerHTML = '';
+  palColors.forEach((c,i)=>{
+    const b = document.createElement('button');
+    b.style.cssText = `width:46px;height:46px;border-radius:50%;border:3px solid #ffffff40;cursor:pointer;background:radial-gradient(circle at 35% 30%, #fff, ${c} 55%, #0006);transition:.15s;box-shadow:0 4px 10px #0005`;
+    b.onclick = ()=>{
+      if(over || G.lock) return;
+      const idx = current.indexOf(-1);
+      if(idx<0) return;
+      current[idx] = i;
+      tone(400 + i*60, .06, 'square', .06);
+      renderCurrent();
+    };
+    palEl.appendChild(b);
+  });
+
+  const evaluate = (guess)=>{
+    const used = Array(slots).fill(false), usedS = Array(slots).fill(false);
+    let b=0, w=0;
+    for(let i=0;i<slots;i++) if(guess[i]===secret[i]){ b++; used[i]=true; usedS[i]=true; }
+    for(let i=0;i<slots;i++){
+      if(used[i]) continue;
+      for(let j=0;j<slots;j++){
+        if(usedS[j]) continue;
+        if(guess[i]===secret[j]){ w++; usedS[j]=true; break; }
+      }
+    }
+    const arr = [];
+    for(let k=0;k<b;k++) arr.push('b');
+    for(let k=0;k<w;k++) arr.push('w');
+    return arr;
+  };
+
+  subBtn.onclick = ()=>{
+    if(over || G.lock || current.includes(-1)) return;
+    const fb = evaluate(current);
+    tries.push({guess:[...current], fb});
+    tone(520, .08, 'square', .06);
+    const correctCount = fb.filter(x=>x==='b').length;
+    if(correctCount === slots){
+      over = true;
+      renderCurrent();
+      msgEl.textContent = '🎉 أحسنت! الشيفرة صحيحة';
+      fx.win();
+      setTimeout(()=>A.hit(1, histEl), 300);
+      return;
+    }
+    if(tries.length >= maxTries){
+      over = true;
+      renderCurrent();
+      msgEl.textContent = '💔 نفدت المحاولات';
+      fx.bad();
+      setTimeout(()=>A.hit(0, histEl), 300);
+      return;
+    }
+    msgEl.textContent = `تبقّى ${AR(maxTries - tries.length)} محاولات`;
+    current = Array(slots).fill(-1);
+    renderCurrent();
+  };
+
+  A.extra(slots*3);
+  renderCurrent();
 }
 };
 </script></body></html>
